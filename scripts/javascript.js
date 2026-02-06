@@ -6,11 +6,11 @@ function createPlayer(name, marker) {
 }
 
 const gameBoard = (function() {
-    const board = [
+    let board = [
                     ["", "", ""],
                     ["", "", ""], 
                     ["", "", ""]
-                  ];
+                ];
 
     const getBoard = () => board;
 
@@ -56,7 +56,50 @@ const gameBoard = (function() {
         return false;
     };
 
-    return {getBoard, markCell, threeInARow};
+    const clearBoard = () => {
+        board = [
+                    ["", "", ""],
+                    ["", "", ""], 
+                    ["", "", ""]
+                ];
+    }
+
+    return {getBoard, markCell, threeInARow, clearBoard};
 })();
+
+const gameController = function() {
+    const player1 = createPlayer("Player1", "X");
+    const player2 = createPlayer("Player2", "O");
+
+    let activePlayer = player1;
+
+    let gameOver = false;
+
+    const switchActivePlayer = () => {
+        activePlayer = activePlayer === player1 ? player2 : player1;
+    };
+
+    const playRound = (row, column) => {
+        if(!gameOver) {
+            if(!gameBoard.markCell(row, column, activePlayer)) return;
+
+            if(gameBoard.threeInARow()) {
+                console.log(`${activePlayer.getName()} has won!`);
+                gameOver = true;
+                return;
+            }
+
+            switchActivePlayer();
+        }
+    }
+
+    const restartGame = () => {
+        activePlayer = player1;
+        gameOver = false;
+        gameBoard.clearBoard();
+    }
+
+    return{playRound, restartGame};
+}();
 
 
