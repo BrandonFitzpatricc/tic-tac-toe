@@ -1,0 +1,24 @@
+.players {
+    padding: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+
+    & .player {
+        padding: 0 18px;
+        border: 0.5px solid black;
+        border-radius: 15px;
+        display: flex;
+        font-size: 40px;
+
+        & .marker {
+            font-size: 45px;
+        }
+
+        & > input {
+            all: unset;
+            text-align: center;
+            width: 300px;
+        }
+    }
+}
