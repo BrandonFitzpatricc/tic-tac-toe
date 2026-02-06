@@ -15,6 +15,9 @@ const gameBoard = (function() {
     const getBoard = () => board;
 
     const markCell = (row, column, player) => {
+        // This function returns true or false to indicate whether or not the cell attempting 
+        // to be marked was already taken. If it was taken, then the player must try again with
+        // a different cell
         if(board[row][column] === "") {
             board[row][column] = player.getMarker();
             return true;
