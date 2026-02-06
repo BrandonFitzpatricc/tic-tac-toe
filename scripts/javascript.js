@@ -15,7 +15,12 @@ const gameBoard = (function() {
     const getBoard = () => board;
 
     const markCell = (row, column, player) => {
-        board[row][column] = player.getMarker();
+        if(board[row][column] === "") {
+            board[row][column] = player.getMarker();
+            return true;
+        }
+
+        return false;
     };
 
     const threeInARow = () => {
@@ -53,3 +58,5 @@ const gameBoard = (function() {
 
     return {getBoard, markCell, threeInARow};
 })();
+
+
