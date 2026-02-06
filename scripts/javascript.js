@@ -1,3 +1,10 @@
+function createPlayer(name, marker) {
+    const getName = () => name;
+    const getMarker = () => marker;
+
+    return {getName, getMarker};
+}
+
 const gameBoard = (function() {
     const board = [
                     ["", "", ""],
@@ -6,6 +13,10 @@ const gameBoard = (function() {
                   ];
 
     const getBoard = () => board;
+
+    const markCell = (row, column, player) => {
+        board[row][column] = player.getMarker();
+    };
 
     const threeInARow = () => {
         let row;
@@ -38,7 +49,7 @@ const gameBoard = (function() {
         }
 
         return false;
-    }
+    };
 
-    return {getBoard, threeInARow};
+    return {getBoard, markCell, threeInARow};
 })();
