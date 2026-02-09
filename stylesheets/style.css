@@ -6,10 +6,9 @@
 
 body {
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    height: 100vh;
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
 }
 
 .players {
@@ -98,7 +97,6 @@ body {
 
 .new-game-btn {
     background-color: var(--white);
-    flex: 1;
     padding: 15px;
     display: flex;
     justify-content: center;
