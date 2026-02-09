@@ -1,3 +1,8 @@
+:root {
+    --game-board-background-color: hsl(180, 100%, 27%);
+    --game-board-color: hsl(180, 100%, 22%);
+}
+
 .players {
     padding: 40px;
     display: flex;
@@ -19,6 +24,39 @@
             all: unset;
             text-align: center;
             width: 300px;
+        }
+    }
+}
+
+.game-board {
+    background-color: var(--game-board-background-color);
+    padding: 90px;
+    display: grid;
+    grid-template-columns: repeat(3, 175px);
+    place-content: center;
+
+    & .cell {
+        font-size: 120px;
+        border: 4px solid var(--game-board-color);
+        height: 175px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:first-child, &:nth-child(2), &:nth-child(3) {
+            border-top: none;
+        }
+
+        &:last-child, &:nth-last-child(2), &:nth-last-child(3) {
+            border-bottom: none;
+        }
+
+        &:first-child, &:nth-child(4), &:nth-last-child(3) {
+            border-left: none;
+        }
+
+        &:nth-child(3), &:nth-last-child(4), &:last-child {
+            border-right: none;
         }
     }
 }
