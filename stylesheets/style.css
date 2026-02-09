@@ -1,7 +1,8 @@
 :root {
-    --green-primary: hsl(180, 100%, 27%);
-    --green-secondary: hsl(180, 100%, 22%);
+    --green-primary: hsl(180, 100%, 32%);
+    --green-secondary: hsl(180, 100%, 28%);
     --black: hsl(0, 0%, 30%);
+    --white: hsl(60, 27%, 94%);
 }
 
 body {
@@ -12,6 +13,7 @@ body {
 }
 
 .players {
+    background-color: var(--white);
     padding: 48px;
     display: flex;
     justify-content: center;
@@ -63,7 +65,7 @@ body {
         }
 
         &.o-marked {
-            color: hsl(0, 0%, 100%);
+            color: var(--white);
         }
 
         &:first-child, &:nth-child(2), &:nth-child(3) {
@@ -85,6 +87,7 @@ body {
 }
 
 .new-game-btn {
+    background-color: var(--white);
     flex: 1;
     padding: 15px;
     display: flex;
