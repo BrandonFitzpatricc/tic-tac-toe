@@ -35,6 +35,11 @@ body {
             all: unset;
             width: 300px;
         }
+
+        &.active {
+            border-bottom: 3px solid var(--green);
+            box-shadow: 0px 5px 5px hsl(180, 2%, 74%);
+        }
     }
 
     & .player-status-text {
