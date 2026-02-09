@@ -6,6 +6,7 @@
 }
 
 body {
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     height: 100vh;
     text-align: center;
     display: flex;
@@ -53,8 +54,10 @@ body {
     place-content: center;
 
     & .cell {
+        font-family: "Albert Sans";
+        font-weight: bold;
         background-color: inherit;
-        font-size: 120px;
+        font-size: 130px;
         border: 4px solid var(--green-secondary);
         height: 175px;
         display: flex;
