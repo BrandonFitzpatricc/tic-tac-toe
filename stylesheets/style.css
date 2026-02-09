@@ -53,12 +53,14 @@ body {
     place-content: center;
 
     & .cell {
+        background-color: inherit;
         font-size: 120px;
         border: 4px solid var(--green-secondary);
         height: 175px;
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
 
         &.x-marked {
             color: var(--black);
