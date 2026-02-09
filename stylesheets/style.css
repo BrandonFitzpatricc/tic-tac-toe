@@ -58,6 +58,14 @@ body {
         justify-content: center;
         align-items: center;
 
+        &.x-marked {
+            color: var(--black);
+        }
+
+        &.o-marked {
+            color: hsl(0, 0%, 100%);
+        }
+
         &:first-child, &:nth-child(2), &:nth-child(3) {
             border-top: none;
         }
