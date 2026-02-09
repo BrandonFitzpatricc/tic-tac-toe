@@ -41,6 +41,7 @@ body {
     & .player-status-text {
         color: var(--black);
         font-size: 24px;
+        font-weight: 500;
         position: absolute;
         bottom: 5px;
     }
@@ -103,6 +104,7 @@ body {
         border: none;
         background-color: inherit;
         font-size: 30px;
+        font-weight: 500;
         color: var(--green-primary);
         cursor: pointer;
     }
