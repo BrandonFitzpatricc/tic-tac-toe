@@ -13,8 +13,8 @@ body {
 .players {
     padding: 45px;
     display: flex;
-    justify-content: space-evenly;
-    gap: 15px;
+    justify-content: center;
+    gap: 25px;
 
     & .player {
         padding: 0 18px;
