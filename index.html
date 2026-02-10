@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./stylesheets/custom-reset.css">
     <link rel="stylesheet" href="./stylesheets/style.css">
 
-    <script src="./scripts/javascript.js"></script>
+    <script src="./scripts/javascript.js" defer></script>
 </head>
 
 <body>
@@ -25,23 +25,15 @@
             <input class="player-name" type="text" placeholder="Enter Name" maxlength="13">
         </div>
 
-        <div class="player-status-text">Player 1's Turn</div>
+        <div class="player-status-text" id="player-status-text"></div>
     </div>
 
-    <div class="game-board">
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
-        <button class="cell" type="button"></button>
+    <div class="game-board" id="game-board">
+
     </div>
 
     <div class="new-game-btn">
-        <button type="button">Start Game</button>
+        <button id="new-game-btn" type="button">New Game</button>
     </div>
 </body>
 </html>
