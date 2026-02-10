@@ -61,6 +61,16 @@ const gameBoard = (function() {
         return false;
     };
 
+    const boardFull = () => {
+        for(let i = 0; i < board.length; i++) {
+            for(let j = 0; j < board.length; j++) {
+                if(board[i][j] === "") return false;
+            }
+        }
+
+        return true;
+    }
+
     const clearBoard = () => {
         board = [
                     ["", "", ""],
@@ -69,16 +79,18 @@ const gameBoard = (function() {
                 ];
     }
 
-    return {getBoard, markCell, threeInARow, clearBoard};
+    return {getBoard, markCell, threeInARow, boardFull, clearBoard};
 })();
 
 const gameController = function() {
     const players = [createPlayer("", "X"), createPlayer("", "O")];
     let activePlayer;
     let gameOver;
+    let draw;
 
     const getActivePlayer = () => activePlayer;
     const isGameOver = () => gameOver;
+    const isDraw = () => draw;
 
     const startNewGame = (playerNames) => {
         const firstGame = !activePlayer;
@@ -90,6 +102,7 @@ const gameController = function() {
 
         activePlayer = players[0];
         gameOver = false;
+        draw = false;
         gameBoard.clearBoard();
     }
 
@@ -101,17 +114,15 @@ const gameController = function() {
         if(!gameOver) {
             if(!gameBoard.markCell(row, column, activePlayer)) return;
 
-            if(gameBoard.threeInARow()) {
-                console.log(`${activePlayer.getName()} has won!`);
-                gameOver = true;
-                return;
-            }
+            draw = gameBoard.boardFull();
+            gameOver = gameBoard.threeInARow() || draw;
+            if(gameOver) return;
 
             switchActivePlayer();
         }
     }
 
-    return{getActivePlayer, isGameOver, startNewGame, playRound};
+    return{getActivePlayer, isGameOver, isDraw, startNewGame, playRound};
 }();
 
 const screenController = function() {
@@ -168,7 +179,9 @@ const screenController = function() {
         });
 
         if(gameController.isGameOver()) {
-            playerStatus.textContent = `${activePlayer.getName()} wins!`
+            playerStatus.textContent = !gameController.isDraw() ? 
+                                       `${activePlayer.getName()} wins!` : 
+                                       "Draw!";
         }
     }
 }();
