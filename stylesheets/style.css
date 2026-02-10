@@ -28,6 +28,7 @@ body {
 
         & .marker {
             font-size: 43px;
+            font-family: "Albert Sans";
         }
 
         & > input {
