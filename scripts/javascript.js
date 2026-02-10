@@ -1,8 +1,10 @@
 function createPlayer(name, marker) {
     const getName = () => name;
+    const setName = (newName) => name = newName;
+
     const getMarker = () => marker;
 
-    return {getName, getMarker};
+    return {getName, setName, getMarker};
 }
 
 const gameBoard = (function() {
@@ -71,15 +73,14 @@ const gameBoard = (function() {
 })();
 
 const gameController = function() {
-    const player1 = createPlayer("Player1", "X");
-    const player2 = createPlayer("Player2", "O");
+    const players = [createPlayer("", "X"), createPlayer("", "O")];
 
-    let activePlayer = player1;
+    let activePlayer;
 
-    let gameOver = false;
+    let gameOver;
 
     const switchActivePlayer = () => {
-        activePlayer = activePlayer === player1 ? player2 : player1;
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
     };
 
     const playRound = (row, column) => {
@@ -96,13 +97,20 @@ const gameController = function() {
         }
     }
 
-    const restartGame = () => {
-        activePlayer = player1;
+    const startNewGame = (playerNames) => {
+        const firstGame = !activePlayer;
+        if(firstGame) {
+            for(let i = 0; i < players.length; i++) {
+                players[i].setName(playerNames[i]);
+            }
+        }
+
+        activePlayer = players[0];
         gameOver = false;
         gameBoard.clearBoard();
     }
 
-    return{playRound, restartGame};
+    return{playRound, startNewGame};
 }();
 
 
