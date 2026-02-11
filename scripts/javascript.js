@@ -139,6 +139,7 @@ const screenController = function() {
     document.querySelector("#new-game-btn").addEventListener("click", () => {
         const playerNames = [];
         document.querySelectorAll(".player-name").forEach((playerName, index) => {
+            playerName.setAttribute("readonly", "");
             playerName.value = !playerName.value ? `Player ${index + 1}` : playerName.value;
             playerNames.push(playerName.value);
         });
