@@ -1,0 +1,3 @@
+# tic-tac-toe
+
+This is an interactive webpage that was created using HTML, CSS and JavaScript. It allows two players to set their names, and play endless rounds of tic-tac-toe with each other. This project demonstrates advanced OOP techniques in JavaScript, including the use of factory functions to avoid the pitfalls of using constructors, and the use of the module design pattern to encapsulate and decouple each individual segment of functionality. 
