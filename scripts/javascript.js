@@ -137,12 +137,18 @@ const screenController = function() {
     const gameBoardDisplay = document.querySelector("#game-board");
 
     document.querySelector("#new-game-btn").addEventListener("click", () => {
-        const playerNames = [];
-        document.querySelectorAll(".player-name").forEach((playerName, index) => {
-            playerName.setAttribute("readonly", "");
-            playerName.value = !playerName.value ? `Player ${index + 1}` : playerName.value;
-            playerNames.push(playerName.value);
-        });
+        let playerNames;
+        // Checking whether or not there is an active player from a previous game is an easy
+        // way to see if this is the first game being played.
+        const firstGame = !gameController.getActivePlayer()
+        if(firstGame) {
+            playerNames = [];
+            document.querySelectorAll(".player-name").forEach((playerName, index) => {
+                playerName.setAttribute("readonly", "");
+                playerName.value = !playerName.value ? `Player ${index + 1}` : playerName.value;
+                playerNames.push(playerName.value);
+            });
+        }   
         
         gameController.startNewGame(playerNames);
         updateScreen();
