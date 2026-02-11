@@ -121,8 +121,9 @@ const gameController = function() {
         if(!gameOver) {
             if(!gameBoard.markCell(row, column, activePlayer)) return;
 
-            draw = gameBoard.boardFull();
-            gameOver = gameBoard.threeInARow() || draw;
+            const threeInARow = gameBoard.threeInARow();
+            draw = gameBoard.boardFull() && !threeInARow
+            gameOver = threeInARow || draw;
             if(gameOver) return;
 
             switchActivePlayer();
@@ -174,6 +175,8 @@ const screenController = function() {
 
                 cellButton.className = "cell";
                 if(cellValue !== "") {
+                    // The x-marked and o-marked classes change the color of the 
+                    // marker respectively. 
                     cellButton.className += ` ${cellValue.toLowerCase()}-marked`
                     cellButton.textContent = cellValue;
                 }
