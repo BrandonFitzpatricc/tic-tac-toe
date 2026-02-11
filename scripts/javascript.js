@@ -19,7 +19,7 @@ const gameBoard = (function() {
     const markCell = (row, column, player) => {
         // This function returns true or false to indicate whether or not the cell attempting 
         // to be marked was already taken. If it was taken, then the player must try again with
-        // a different cell
+        // a different cell.
         if(board[row][column] === "") {
             board[row][column] = player.getMarker();
             return true;
@@ -37,6 +37,8 @@ const gameBoard = (function() {
         let threeInARow;
 
         for(let i = 0; i < board.length; i++) {
+            // This loop will iterate through every row and column of the board, returning true
+            // if it finds one where each cell is marked with the same marker.
             row = board[i];
             column = [];
             
@@ -49,6 +51,9 @@ const gameBoard = (function() {
                 if(threeInARow) return true;
             }
 
+            // The left and right diagonals of the board will be obtained if the loop finishes
+            // executing, then they will also be checked to see if either has all of their cells
+            // marked with the same marker. 
             leftDiagonal.push(board[i][i]);
             rightDiagonal.push(board[i][(board.length - 1) - i]);
         }
@@ -93,6 +98,8 @@ const gameController = function() {
     const isDraw = () => draw;
 
     const startNewGame = (playerNames) => {
+        // Checking whether or not there is an active player from a previous game is an easy
+        // way to see if this is the first game being played.
         const firstGame = !activePlayer;
         if(firstGame) {
             for(let i = 0; i < players.length; i++) {
@@ -130,9 +137,9 @@ const screenController = function() {
 
     document.querySelector("#new-game-btn").addEventListener("click", () => {
         const playerNames = [];
-        document.querySelectorAll(".player-name").forEach((node, index) => {
-            node.value = !node.value ? `Player ${index + 1}` : node.value;
-            playerNames.push(node.value);
+        document.querySelectorAll(".player-name").forEach((playerName, index) => {
+            playerName.value = !playerName.value ? `Player ${index + 1}` : playerName.value;
+            playerNames.push(playerName.value);
         });
         
         gameController.startNewGame(playerNames);
@@ -149,14 +156,14 @@ const screenController = function() {
         const activePlayer = gameController.getActivePlayer();
 
         if(activePlayer) {
-            const activePlayerName = activePlayer.getName();
+            playerStatus.textContent = `${activePlayer.getName()}'s turn`
 
-            playerStatus.textContent = `${activePlayerName}'s turn`
-
-            document.querySelectorAll(".player").forEach(node => {
-                playerMarker = node.firstElementChild.textContent;
-                if(playerMarker === activePlayer.getMarker()) node.className += " active";
-                else node.className = "player"
+            document.querySelectorAll(".player").forEach(player => {
+                // The active class toggles additional styling on the display of whichever
+                // player's turn it currently is.
+                playerMarker = player.firstElementChild.textContent;
+                if(playerMarker === activePlayer.getMarker()) player.className += " active";
+                else player.className = "player"
             })
         }
 
